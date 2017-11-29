@@ -4,9 +4,9 @@ const url = "http://localhost:3001/";
 const Authorization = 1;
 
 const headers = {
-    headers : {
-        Authorization
-    }
+  headers: {
+    Authorization
+  }
 };
 
 const headersPOST = {
@@ -23,15 +23,15 @@ const req = () => {
 
 // server does not update or create categories, so I only call once getCategories and store it
 let categories = false;
-server.getCategories = () => !categories ? fetch(url + "categories", headers ).then(response => categories = response.json()) : Promise.resolve(categories);
+server.getCategories = () => (!categories ? fetch(url + "categories", headers).then(response => (categories = response.json())) : Promise.resolve(categories));
 
 // Getting Posts and Comments
-server.getPosts = () => fetch(url + "posts", headers ).then(response => response.json());
-server.getComments = () => fetch(url + "comments", headers ).then(response => response.json());
+server.getPosts = () => fetch(url + "posts", headers).then(response => response.json());
+server.getComments = (postId = req()) => fetch(url + "posts/" + postId + "/comments", headers).then(response => response.json());
 
 // Getting specific post or comment
-server.getPost = id => fetch(url + "posts/" + id, headers ).then(response => response.json());
-server.getComment = id => fetch(url + "comments/" + id, headers ).then(response => response.json());
+server.getPost = id => fetch(url + "posts/" + id, headers).then(response => response.json());
+server.getComment = id => fetch(url + "comments/" + id, headers).then(response => response.json());
 
 // Creating a post
 server.createPost = ({ title = req(), body = req(), author = req(), category = req() } = {}) => {
