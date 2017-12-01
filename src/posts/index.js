@@ -16,7 +16,7 @@ class Posts extends React.Component {
         <div>
             <h2>POSTS</h2>
             <div>
-                { this.props.posts.map(post => <Post id={post.id} key={post.id} />) }
+                { this.props.posts.map(post => <Post key={post.id} {...post} />) }
             </div>
         </div>
     );

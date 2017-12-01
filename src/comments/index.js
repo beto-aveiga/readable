@@ -12,7 +12,7 @@ class Comments extends React.Component {
 
   render() {
     return(
-        this.props.comments.map(comment => <Comment id={comment.id} body={comment.body} key={comment.id} />)
+        this.props.comments.map(comment => <Comment key={comment.id} {...comment} />)
     );
   }
 }
