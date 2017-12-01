@@ -1,6 +1,7 @@
 import React from "react";
 // import {get_comments} from "../comments/actions"
 import Comments from "../comments";
+import Rate from "../rate/rate";
 import { connect } from "react-redux";
 
 class Post extends React.Component {
@@ -13,6 +14,7 @@ class Post extends React.Component {
   render() {
     return (
         <div>POST {this.props.id}
+            <Rate like={ () => {console.log('LIKE')} } dislike={ ()=> {console.log('DISLIKE')}} voteScore={ this.props.voteScore } />
             <Comments postId={this.props.id} comments={[]} />
         </div>
     );
