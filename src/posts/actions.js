@@ -3,6 +3,8 @@ export const POST_CREATE = "POST_CREATE";
 export const POST_EDIT = "POST_EDIT";
 export const POST_DELETE = "POST_DELETE";
 export const POSTS_INIT_ACTION = "POSTS_INIT_ACTION";
+export const POST_UPVOTE_ACTION = "POST_UPVOTE_ACTION";
+export const POST_DOWNVOTE_ACTION = "POST_DOWNVOTE_ACTION";
 
 export const post_create_action = post => ({
   type: POST_CREATE,
@@ -23,6 +25,24 @@ export const posts_init_action = posts => ({
   type: POSTS_INIT_ACTION,
   posts
 });
+
+export const post_upVote_action = post => ({
+  type: POST_UPVOTE_ACTION,
+  post
+});
+
+export const post_downVote_action = post => ({
+  type: POST_DOWNVOTE_ACTION,
+  post
+});
+
+export const post_upVote = id => dispatch => {
+  server.upVotePost(id).then(data => dispatch(post_upVote_action(data)));
+};
+
+export const post_downVote = id => dispatch => {
+  server.downVotePost(id).then(data => dispatch(post_downVote_action(data)));
+};
 
 export const get_all_posts = () => dispatch => {
   server.getPosts().then(posts => dispatch(posts_init_action(posts)));
