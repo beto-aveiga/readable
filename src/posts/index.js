@@ -1,29 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
 import { get_all_posts } from "./actions";
-import Comments from "../comments";
+import Post from "./post";
+import _ from "lodash";
+
 
 class Posts extends React.Component {
-  state = {
-    posts: []
-  };
 
   componentDidMount() {
     this.props.dispatch(get_all_posts());
   }
 
   render() {
-    return this.props.posts.map(post => <div>{post.id}</div>);
+    return (
+        <div>
+            <h2>POSTS</h2>
+            <div>
+                { this.props.posts.map(post => <Post id={post.id} key={post.id} />) }
+            </div>
+        </div>
+    );
   }
 }
 
 function mapStateToProps(state) {
-  // console.let nameog(state);
-  console.log("state", state);
-  // debugger;
-  return {
-    posts: "postsReducer" in state && "posts" in state.postsReducer ? state.postsReducer.posts : []
-  };
+    let posts = _.get(state, 'postsReducer.posts', false);
+    return { posts: posts ? posts: [] }
 }
 
 export default connect(mapStateToProps)(Posts);
