@@ -41,6 +41,13 @@ server.createPost = ({ title = req(), body = req(), author = req(), category = r
   return fetch(url + "posts", params);
 };
 
+// Upvote | Downvote
+server.vote = (entity, id, option) => fetch(url + entity + "s" + "/" + id, { option }).then(response => response.json());
+server.upVotePost = id => server.vote("post", id, "upVote");
+server.downVotePost = id => server.vote("post", id, "downVote");
+server.upVoteComment = id => server.vote("comment", id, "upVote");
+server.downVoteComment = id => server.vote("comment", id, "downVote");
+
 // Creating a comment
 server.createComment = ({ body = req(), author = req(), parentId = req() } = {}) => {
   const id = uuid();
