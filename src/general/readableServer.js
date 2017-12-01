@@ -42,7 +42,7 @@ server.createPost = ({ title = req(), body = req(), author = req(), category = r
 };
 
 // Upvote | Downvote
-server.vote = (entity, id, option) => fetch(url + entity + "s" + "/" + id, { option }).then(response => response.json());
+server.vote = (entity, id, option) => fetch(url + entity + "s/" + id, { headers: { ...headersPOST }, option }).then(response => response.json());
 server.upVotePost = id => server.vote("post", id, "upVote");
 server.downVotePost = id => server.vote("post", id, "downVote");
 server.upVoteComment = id => server.vote("comment", id, "upVote");
