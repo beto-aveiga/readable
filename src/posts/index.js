@@ -4,7 +4,6 @@ import { get_all_posts } from "./actions";
 import Post from "./post";
 import _ from "lodash";
 
-
 class Posts extends React.Component {
 
   componentDidMount() {
@@ -13,8 +12,8 @@ class Posts extends React.Component {
 
   render() {
     return (
-        <div>
-            <h2>POSTS</h2>
+        <div className="mw9 center sans-serif">
+            <div className="f2 b tc ma4">READABLE</div>
             <div>
                 { this.props.posts.map(post => <Post key={post.id} {...post} />) }
             </div>

@@ -8,10 +8,10 @@ class Rate extends React.Component {
 
   render() {
     return (
-      <div className="rate">
-          <span className="like" onClick={ this.props.like } >+</span>
-          <span className="dislike" onClick={ this.props.dislike }>-</span>
-          <span className="score">{this.props.voteScore}</span>
+      <div className="tr pa1 pl0 mb0 bt b--black-40 ">
+          <span className="f6 link dim br-pill ba ph2 pv2 mr2 dib black w1 tc pointer" onClick={ this.props.like } >+</span>
+          <span className="f6 link dim br-pill ba ph2 pv2 mr2 dib black w1 tc pointer" onClick={ this.props.dislike }>-</span>
+          <span className="score ph2"> {this.props.voteScore}</span>
       </div>
     );
   }
