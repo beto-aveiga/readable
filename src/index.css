@@ -1,5 +1,65 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+
+.anim-del-010 {
+  animation-delay: 0.1s;
+}
+.anim-del-020 {
+  animation-delay: 0.2s;
+}
+.anim-del-030 {
+  animation-delay: 0.3s;
+}
+.anim-del-040 {
+  animation-delay: 0.4s;
+}
+.anim-del-050 {
+  animation-delay: 0.5s;
+}
+.anim-del-060 {
+  animation-delay: 0.6s;
+}
+.anim-del-070 {
+  animation-delay: 0.7s;
+}
+.anim-del-080 {
+  animation-delay: 0.8s;
+}
+.anim-del-090 {
+  animation-delay: 0.9s;
+}
+
+.anim-del-100 {
+  animation-delay: 1s;
+}
+
+
+.animated.anim-dur-010 {
+  animation-duration: 1s;
+}
+.animated.anim-dur-020 {
+  animation-duration: 2s;
+}
+.animated.anim-dur-030 {
+  animation-duration: 0.3s;
+}
+.animated.anim-dur-040 {
+  animation-duration: 0.4s;
+}
+.animated.anim-dur-050 {
+  animation-duration: 0.5s;
+}
+.animated.anim-dur-060 {
+  animation-duration: 0.6s;
+}
+.animated.anim-dur-070 {
+  animation-duration: 0.7s;
+}
+.animated.anim-dur-080 {
+  animation-duration: 0.8s;
+}
+.animated.anim-dur-090 {
+  animation-duration: 0.9s;
+}
+
+.animated.anim-dur-100 {
+  animation-duration: 1s;
 }

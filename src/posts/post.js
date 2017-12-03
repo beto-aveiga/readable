@@ -24,20 +24,26 @@ class Post extends React.Component {
     full: () => (
       <div className="fl w-100 pa2 ">
           <div className="shadow-4  bg-white tl pa4">
-              <div className="f2 lh-copy black-50">{this.props.title}</div>
-              {this.timeago.format(this.props.timestamp)}
-              <div className="pa3 pl0">{this.props.body}</div>
+              <div className="f3 lh-copy black-50 measure">{this.props.title}</div>
+              <div className="code black-50">{this.timeago.format(this.props.timestamp)}</div>
+              <div className="pa3 pl0 measure">{this.props.body}</div>
               <Rate like={this.upVote} dislike={this.downVote} voteScore={this.props.voteScore} />
               <Comments postId={this.props.id} commentCount={this.props.commentCount} />
           </div>
       </div>
     ),
     teaser: () => (
-        <div className="fl w-100 pa2 ">
-            <div className="shadow-4  bg-white tl pa4">
-                <div className="f2 lh-copy black-50">{this.props.title}</div>
-                {this.timeago.format(this.props.timestamp)}
-                <div className="pa3 pl0">{this.props.body}</div>
+        <div className={this.props.className}>
+            <div className="fl w-100 pa2">
+                <div className="shadow-4  bg-white tl ">
+                    <div className="f3 lh-copy dark-blue bg-near-white ph4 pv2">
+                        <div className="measure">{this.props.title}</div>
+                    </div>
+                    <div className="ph4 pv2">
+                        <div className="code black-50">{this.timeago.format(this.props.timestamp)}</div>
+                        <div className="pa3 pl0  measure">{this.props.body}</div>
+                    </div>
+                </div>
             </div>
         </div>
     )
