@@ -33,7 +33,7 @@ class Comment extends React.Component {
                 </p>
 
                 <div>
-                    <Rate className="fl " like={this.upVote} dislike={this.downVote} voteScore={this.props.voteScore} />
+                    <Rate className="fl " like={this.upVote} dislike={this.downVote} votescore={this.props.voteScore} />
                 </div>
             </blockquote>
         </div>
