@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 // Combining all reducers in the App
 const rootReducer = combineReducers({ commentsReducer, postsReducer });
 // Creating composed middleware
-const composedMiddleware = compose( applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
+const composedMiddleware = compose( applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose );
 // Creating the store and second argument for debugging purposes with Redux Devtools
 const store = createStore(rootReducer, composedMiddleware );
 
