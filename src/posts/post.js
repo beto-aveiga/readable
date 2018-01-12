@@ -8,6 +8,8 @@ import _ from "lodash";
 import timeago from "timeago.js";
 import Transition from "react-transition-group/Transition";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Link, Route, withRouter } from "react-router-dom";
+
 
 class Post extends React.Component {
   state = {
@@ -50,7 +52,9 @@ class Post extends React.Component {
           <div className="fl w-100 pa2">
               <div className="shadow-4  bg-white tl ">
                   <div className="f3 lh-copy dark-blue bg-near-white ph4 pv2">
-                      <div className="measure">{this.props.title}</div>
+                      <div className="measure">
+                          <Link to={`/posts/${this.props.id}`} className="no-underline blue">{this.props.title}</Link>
+                      </div>
                   </div>
                   <div className="ph4 pv2">
                       <div className="code black-50">{this.timeago.format(this.props.timestamp)}</div>
@@ -60,16 +64,25 @@ class Post extends React.Component {
 
                   <div className="mw9 center ph3-ns">
                       <div className="cf ph2-ns">
-                          <div className="fl w-100 w-50-ns pa2">
+                          <div className="fl w-100 w-third-ns pa2">
                               <div className=" bg-white pv2">
                                   <CommentsCount commentcount={this.props.commentcount} />
                               </div>
                           </div>
-                          <div className="fl w-100 w-50-ns pa2">
+                          <div className="fl w-100 w-third-ns pa2">
                               <div className=" bg-white pv2">
                                   <Rate like={this.upVote} dislike={this.downVote} votescore={this.props.votescore} />
                               </div>
                           </div>
+
+                          <div className="fl w-100 w-third-ns pa2">
+                              <div className=" bg-white pv2">
+                                  <Link to={`/posts/${this.props.id}/edit`} ><i className="material-icons">mode_edit</i>Edit</Link>
+                                  <Link to={`/posts/${this.props.id}/delete`} ><i className="material-icons">delete</i>Delete</Link>
+                              </div>
+                          </div>
+
+
                       </div>
                   </div>
 
@@ -83,16 +96,14 @@ class Post extends React.Component {
   render() {
     this.timeago = timeago();
 
+
+
     const classNames = {
       enter: `animated fadeIn ${this.props.animdelin}`,
       exit: `animated fadeOut ${this.props.animdelout}`
     };
 
-    return (
-      <CSSTransition in={this.state.show} timeout={500} classNames={classNames} mountOnEnter={true} unmountOnExit={true}>
-          {this.display.teaser()}
-      </CSSTransition>
-    );
+    return this.display.teaser();
   }
 }
 
@@ -103,4 +114,7 @@ function mapStoreToProps(store, own_props) {
   return post[0];
 }
 
-export default connect(mapStoreToProps)(Post);
+
+export default withRouter(connect(mapStoreToProps)(Post));
+
+// export default connect(mapStoreToProps)(Post);
