@@ -33,10 +33,10 @@
 
 
 .animated.anim-dur-010 {
-  animation-duration: 1s;
+  animation-duration: 0.1s;
 }
 .animated.anim-dur-020 {
-  animation-duration: 2s;
+  animation-duration: 0.2s;
 }
 .animated.anim-dur-030 {
   animation-duration: 0.3s;
