@@ -56,15 +56,15 @@ class Post extends React.Component {
                   </div>
 
 
-                  <div class="mw9 center ph3-ns">
-                      <div class="cf ph2-ns">
-                          <div class="fl w-100 w-50-ns pa2">
-                              <div class=" bg-white pv2">
+                  <div className="mw9 center ph3-ns">
+                      <div className="cf ph2-ns">
+                          <div className="fl w-100 w-50-ns pa2">
+                              <div className=" bg-white pv2">
                                   <CommentsCount commentscount={this.props.commentcount} />
                               </div>
                           </div>
-                          <div class="fl w-100 w-50-ns pa2">
-                              <div class=" bg-white pv2">
+                          <div className="fl w-100 w-50-ns pa2">
+                              <div className=" bg-white pv2">
                                   <Rate like={this.upVote} dislike={this.downVote} votescore={this.props.votescore} />
                               </div>
                           </div>
