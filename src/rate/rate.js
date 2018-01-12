@@ -7,11 +7,12 @@ class Rate extends React.Component {
   }
 
   render() {
+
     return (
-      <div className="tr pa1 pl0 mb0 bt b--black-40 ">
-          <span className="f6 link dim br-pill ba ph2 pv2 mr2 dib black w1 tc pointer" onClick={ this.props.like } >+</span>
-          <span className="f6 link dim br-pill ba ph2 pv2 mr2 dib black w1 tc pointer" onClick={ this.props.dislike }>-</span>
-          <span className="score ph2"> {this.props.votescore}</span>
+      <div className=" ">
+          <span className="score ph2">{this.props.votescore}</span>
+          <span className="f6 link dim br-pill ba ph2  mr2 dib  w1 tc pointer b--black-10 bg-black-10 green" onClick={ this.props.like } >+</span>
+          <span className="f6 link dim br-pill ba ph2  mr2 dib  w1 tc pointer b--black-10 bg-black-10 red" onClick={ this.props.dislike }>-</span>
       </div>
     );
   }
