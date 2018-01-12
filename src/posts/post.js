@@ -39,11 +39,13 @@ class Post extends React.Component {
               <div className="code black-50">{this.timeago.format(this.props.timestamp)}</div>
               <div className="pa3 pl0 measure">{this.props.body}</div>
               <Rate like={this.upVote} dislike={this.downVote} votescore={this.props.voteScore} />
-              <Comments postId={this.props.id} commentCount={this.props.commentCount} />
+              <Comments postId={this.props.id} commentcount={this.props.commentcount} />
           </div>
       </div>
     ),
-    teaser: () => (
+    teaser: () =>{
+
+    return (
       <div className={this.props.className}>
           <div className="fl w-100 pa2">
               <div className="shadow-4  bg-white tl ">
@@ -60,7 +62,7 @@ class Post extends React.Component {
                       <div className="cf ph2-ns">
                           <div className="fl w-100 w-50-ns pa2">
                               <div className=" bg-white pv2">
-                                  <CommentsCount commentscount={this.props.commentcount} />
+                                  <CommentsCount commentcount={this.props.commentcount} />
                               </div>
                           </div>
                           <div className="fl w-100 w-50-ns pa2">
@@ -75,7 +77,7 @@ class Post extends React.Component {
               </div>
           </div>
       </div>
-    )
+    )}
   };
 
   render() {
@@ -95,6 +97,7 @@ class Post extends React.Component {
 }
 
 function mapStoreToProps(store, own_props) {
+
   let posts = _.get(store, "postsReducer.posts", false);
   let post = posts ? posts.filter(post => post.id === own_props.id) : [];
   return post[0];

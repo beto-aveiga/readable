@@ -8,7 +8,15 @@ function reducer(state = {}, action) {
   switch (action.type) {
     case POSTS_INIT_ACTION: {
       const { posts } = action;
-      return _.assign({}, state, { posts });
+      // setting props to lowercase
+      const posts_propsTolower = posts.map( e => {
+          e.commentcount = e.commentCount;
+          e.votescore = e.voteScore;
+          delete e.voteScore;
+          delete e.commentCount;
+          return e;
+      });
+      return _.assign({}, state, { 'posts':posts_propsTolower });
     }
 
     case POST_DOWNVOTE_ACTION:
