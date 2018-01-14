@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { get_all_posts } from "./actions";
 import Post from "./post";
 import _ from "lodash";
-import "anicollection/dist/anicollection.css";
 
 class Posts extends React.Component {
   componentDidMount() {
@@ -14,8 +13,7 @@ class Posts extends React.Component {
     return (
       <div>
           {this.props.posts.map((post, i, arr) => {
-              post.deleted = post.deleted.toString();
-              return <Post key={post.id} {...post} show={this.props.show} animdelin={`anim-del-0${i}0 anim-dur-050`} animdelout={`anim-del-0${arr.length - i}0 anim-dur-050`} />;
+              return <Post key={post.id} {...post} />;
           })}
       </div>
     );
