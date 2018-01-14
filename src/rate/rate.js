@@ -10,9 +10,10 @@ class Rate extends React.Component {
 
     return (
       <div className=" ">
+          Rating
           <span className="score ph2">{this.props.votescore}</span>
-          <span className="f6 link dim br-pill ba ph2  mr2 dib  w1 tc pointer b--black-10 bg-black-10 green" onClick={ this.props.like } >+</span>
-          <span className="f6 link dim br-pill ba ph2  mr2 dib  w1 tc pointer b--black-10 bg-black-10 red" onClick={ this.props.dislike }>-</span>
+          <span className="f6 link dim   ph2  mr2 dib  w1 tc pointer  green v-mid" onClick={ this.props.like } ><i className="material-icons">thumb_up</i></span>
+          <span className="f6 link dim   ph2  mr2 dib  w1 tc pointer  red v-mid" onClick={ this.props.dislike }><i className="material-icons">thumb_down</i></span>
       </div>
     );
   }
