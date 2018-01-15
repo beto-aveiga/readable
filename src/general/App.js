@@ -28,13 +28,24 @@ class App extends Component {
               <span className="dim dib animated fadeInRight anim-del-010 dark-red  anim-dur-020">able</span>
           </div>
 
-          <Link to="/" className="db f5 tc animated fadeIn delay-sm no-underline blue">HOME</Link>
+          <Link to="/" className="db f5 tc animated fadeIn delay-sm no-underline blue">home</Link>
 
 
           <Categories />
 
+          <Route exact path="/" render= {() =>(
+              <div className="tc cb overflow-hidden mv5">
+                  <div className="f1 ph3  gray"><i className="material-icons f1">home</i></div>
+                  <div className="w50 bt b--silver tracked-mega ttu f6 pa3">all posts</div>
+              </div>
+
+
+          )} />
+
+
           <Route exact path="/" component={Posts} />
           <Route exact path="/posts/:category/:id" component={Post} />
+          <Route exact path="/:category" component={Posts} />
 
 
           <footer className=" bottom-0 left-0 pv4 ph3 ph5-m ph6-l mid-gray fl w-100 cf ">
