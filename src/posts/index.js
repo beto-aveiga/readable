@@ -55,9 +55,17 @@ class Posts extends React.Component {
 
     console.log('RENDERING '+this.state.category);
 
+    const filteredPosts = this[this.state.sort](this.filter_by_category(this.props.posts, this.state.category));
+
     return (
       <div>
-          <div className="fr cb mr4 mb2 mt4">
+          { this.state.category && (
+              <div className="tc cb overflow-hidden mv5">
+                  <div className="f1 pa3">{ this.state.category }</div>
+                  <div className="w50 bt b--silver tracked-mega ttu f6 pa3">Category</div>
+              </div>
+          )}
+          <div className="cb mr4 mb2 mt4 overflow-hidden">
               {/* sort by rating buttons */}
               <i className="material-icons v-mid mr1">sort</i>
               <span className="ttu f7">sort by rating</span>
@@ -78,9 +86,10 @@ class Posts extends React.Component {
                   keyboard_arrow_down
               </i>
           </div>
-          {this[this.state.sort](this.filter_by_category(this.props.posts, this.state.category)).map((post, i, arr) => {
-          return <Post key={post.id} {...post} />;
-        })}
+          { filteredPosts.map((post, i, arr) => { return <Post key={post.id} {...post} />;}) }
+          { filteredPosts.length < 1 && (
+              <div className="pa6 bg-near-white cb tc f1 gray">No posts found</div>
+          )}
       </div>
     );
   }
