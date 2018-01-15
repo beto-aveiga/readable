@@ -10,6 +10,25 @@ class Posts extends React.Component {
     category: ""
   };
 
+  listenRouteChange(location, action) {
+      const path_splitted = location.pathname.split("/");
+      if (path_splitted.length === 2) {
+        let category = path_splitted[1];
+        console.log('CAMBIO DE RUTA ' + category);
+        this.setState({ 'category': category });
+      }
+  }
+
+  componentDidMount() {
+    this.props.dispatch(get_all_posts());
+    this.unlisten = this.props.history.listen((location, action) => { this.listenRouteChange(location, action); } );
+    this.listenRouteChange( this.props.location );
+  }
+
+  componentWillUnmount() {
+    this.unlisten();
+  }
+
   updateSort = sort_method => {
     // making sure to only call sorting methods
     switch (sort_method) {
@@ -21,19 +40,20 @@ class Posts extends React.Component {
     }
   };
 
+  // filter by category
+  filter_by_category = (posts, category) => _.filter(posts, post => category === "" || post.category === category);
+
   // sorting methods
   rating_asc = posts => _.sortBy(posts, p => p.votescore);
   rating_desc = posts => _.sortBy(posts, p => -p.votescore);
   date_asc = posts => _.sortBy(posts, p => p.timestamp);
   date_desc = posts => _.sortBy(posts, p => -p.timestamp);
 
-  componentDidMount() {
-    this.props.dispatch(get_all_posts());
-  }
-
   render() {
     const sortIconClasses = " material-icons ml2 ba bg-gray white br-100 dim link pointer v-mid ";
     const activeSortClasses = " bg-orange";
+
+    console.log('RENDERING '+this.state.category);
 
     return (
       <div>
@@ -58,10 +78,9 @@ class Posts extends React.Component {
                   keyboard_arrow_down
               </i>
           </div>
-
-          {this[this.state.sort](this.props.posts).map((post, i, arr) => {
-              return <Post key={post.id} {...post} />;
-          })}
+          {this[this.state.sort](this.filter_by_category(this.props.posts, this.state.category)).map((post, i, arr) => {
+          return <Post key={post.id} {...post} />;
+        })}
       </div>
     );
   }
