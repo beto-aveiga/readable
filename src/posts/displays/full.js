@@ -36,9 +36,9 @@ export default function() {
                     <div className="cf ph2-ns">
                         {/* Comments */}
                         <div className="fl w-100 w-third-ns pa2">
-                            <div className=" bg-white pv2">
+                            {/* <div className=" bg-white pv2">
                                 <CommentsCount commentcount={this.props.commentcount} />
-                            </div>
+                            </div> */}
                         </div>
                         {/* Votescore */}
                         <div className="fl w-100 w-third-ns pa2 tc">
