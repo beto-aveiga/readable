@@ -63,7 +63,7 @@ class Comment extends React.Component {
                   </div>
               )}
 
-              {this.state.editMode && <CommentBox comment={ this.props } toggleEditMode={ this.editModeToggle } />}
+              {this.state.editMode && <CommentBox comment={this.props} toggleEditMode={this.editModeToggle} />}
           </blockquote>
       </div>
     );
