@@ -56,4 +56,8 @@ server.createComment = ({ body = req(), author = req(), parentId = req() } = {})
 // deleting a post
 server.delPost = id => fetch(url + "posts/" + id, del).then(response => response.json());
 
+// deleting a comment
+server.delComment = id => fetch(url + "comments/" + id, del).then(response => response.json());
+
+
 export default server;
