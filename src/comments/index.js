@@ -6,13 +6,13 @@ import _ from "lodash";
 
 class Comments extends React.Component {
   componentDidMount() {
-    this.props.dispatch(get_comments(this.props.postId));
+    this.props.dispatch(get_comments(this.props.postid));
   }
 
   render() {
     return (
-      <div>
-          <h2 className="f5">COMMENTS {this.props.commentCount}</h2>
+      <div className="pa4 cb">
+          <h2 className="f5 gray tc tracked-mega mb4">COMMENTS {this.props.commentCount}</h2>
           {this.props.comments.map(comment => <Comment key={comment.id} {...comment} />)}
       </div>
     );
@@ -21,7 +21,7 @@ class Comments extends React.Component {
 
 function mapStoreToProps(state, props) {
   let comments = _.get(state, "commentsReducer.comments", false);
-  return { comments: comments ? comments.filter(e => props.postId === e.parentId) : [] };
+  return { comments: comments ? comments.filter(e => props.postid === e.parentId) : [] };
 }
 
 export default connect(mapStoreToProps)(Comments);
