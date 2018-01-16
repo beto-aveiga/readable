@@ -15,14 +15,22 @@ export default function() {
     ),
     links: () => (
       <div className=" bg-white pv2">
-          <Link to={`/posts/${this.props.category}/${this.props.id}/edit`} className="no-underline">
+          <Link to={`/posts/${this.props.category}/${this.props.id}/edit`} className="no-underline pointer">
               <i className="material-icons v-mid mr1 f5 blue">mode_edit</i> <span className="ttu f6 black">Edit</span>
           </Link>
-          <Link to={`/posts/${this.props.category}/${this.props.id}/delete`} className="no-underline">
+          <span to={`/posts/${this.props.category}/${this.props.id}/delete`} onClick={ this.deleteConfirmationToggle } className="no-underline pointer">
               <i className="material-icons v-mid mr1 ml3 f5 red">delete</i> <span className="ttu f6 black">Delete</span>
-          </Link>
+          </span>
+          { this.state.deleteConfirmation && (
+              <div className="flex justify-end mt4">
+                  <div className="f6 ph3 pv2 " >Are you sure?</div>
+                  <div className="f6 link dim br1 ph3 pv2 mb2 mr2 dib white bg-red pointer" onClick={ this.userConfirmDeletionOfPost }>YES</div>
+                  <div className="f6 link dim br1 ba ph3 pv2 mb2 dib dark-gray pointer" onClick={ this.deleteConfirmationToggle }>NO</div>
+              </div>
+          )}
       </div>
     ),
+
     date: () => (
       <div className="black-50">
           <i className="material-icons v-mid mr1 ml3">today</i>

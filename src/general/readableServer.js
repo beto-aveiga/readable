@@ -8,6 +8,7 @@ const headers = {
 };
 
 const post = object => ({ headers, method: "POST", body: JSON.stringify(object) });
+const del = { headers, method: "DELETE" };
 
 const server = {};
 
@@ -51,5 +52,8 @@ server.createComment = ({ body = req(), author = req(), parentId = req() } = {})
   const params = { headers, id, timestamp, body, author, parentId };
   return fetch(url + "posts", params);
 };
+
+// deleting a post
+server.delPost = id => fetch(url + "posts/" + id, del).then(response => response.json());
 
 export default server;

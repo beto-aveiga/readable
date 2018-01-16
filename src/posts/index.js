@@ -52,10 +52,8 @@ class Posts extends React.Component {
   render() {
     const sortIconClasses = " material-icons ml2 ba bg-gray white br-100 dim link pointer v-mid ";
     const activeSortClasses = " bg-orange";
-
-    console.log('RENDERING '+this.state.category);
-
-    const filteredPosts = this[this.state.sort](this.filter_by_category(this.props.posts, this.state.category));
+    const notDeletedPosts = _.filter( this.props.posts, post => !post.deleted );
+    const filteredPosts = this[this.state.sort](this.filter_by_category( notDeletedPosts, this.state.category));
 
     return (
       <div>

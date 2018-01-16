@@ -15,6 +15,16 @@ function postPropsToLower(e) {
 
 function reducer(state = {}, action) {
   switch (action.type) {
+
+      case POST_DELETE: {
+          debugger;
+          let { post } = action;
+          const state_without_post = _.filter(state.posts, state_post => post.id != state_post.id );
+          debugger;
+          return _.assign({}, state, { 'posts' : state_without_post });
+      }
+
+
     case POSTS_INIT_ACTION: {
       let { posts } = action;
       posts = posts.map(postPropsToLower);

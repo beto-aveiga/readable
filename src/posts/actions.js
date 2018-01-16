@@ -12,9 +12,9 @@ export const post_create_action = post => ({
   post
 });
 
-export const post_delete_action = id => ({
+export const post_delete_action = post => ({
   type: POST_DELETE,
-  id
+  post
 });
 
 export const post_edit_action = post => ({
@@ -38,9 +38,9 @@ export const post_downVote_action = post => ({
 });
 
 export const post_init_action = post => ({
-    type: POST_INIT_ACTION,
-    post
-})
+  type: POST_INIT_ACTION,
+  post
+});
 
 export const post_upVote = id => dispatch => {
   server.upVotePost(id).then(data => dispatch(post_upVote_action(data)));
@@ -54,11 +54,10 @@ export const get_all_posts = () => dispatch => {
   server.getPosts().then(posts => dispatch(posts_init_action(posts)));
 };
 
-export const get_post = (id) => dispatch => {
-    server.getPost(id).then(post => dispatch(post_init_action(post)));
-}
+export const get_post = id => dispatch => {
+  server.getPost(id).then(post => dispatch(post_init_action(post)));
+};
 
-// function get_all_posts() {
-//   return dispatch => { server.getPosts.then( posts => dispatch(posts_init_action(posts)) );
-//   };
-// }
+export const delete_post = id => dispatch => {
+  server.delPost(id).then(post => dispatch(post_delete_action(post)));
+};

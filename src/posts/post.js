@@ -7,15 +7,21 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import timeago from "timeago.js";
 import { Link, Route, withRouter } from "react-router-dom";
-import { get_post } from "./actions";
+import { get_post, delete_post } from "./actions";
 import PostFields from "./displays/fields";
 import PostFull from "./displays/full";
 import PostTeaser from "./displays/teaser";
 import EditMode from "./displays/edit_mode";
 
 class Post extends React.Component {
-  state = { display: "teaser" };
+  state = { display: "teaser", deleteConfirmation: false };
   timeago = timeago();
+
+  deleteConfirmationToggle = () => this.setState({ deleteConfirmation: !this.state.deleteConfirmation });
+
+  userConfirmDeletionOfPost = () => {
+    this.props.dispatch(delete_post(this.props.id));
+  };
 
   componentDidMount() {
     const path_splitted = this.props.location.pathname.split("/");
@@ -29,7 +35,7 @@ class Post extends React.Component {
     }
 
     // detecting post in edit mode
-    if (path_splitted.length === 5 && path_splitted[4] ==='edit') {
+    if (path_splitted.length === 5 && path_splitted[4] === "edit") {
       post_id = path_splitted[3];
       this.props.dispatch(get_post(post_id));
       this.setState({ display: "edit_mode" });
@@ -47,10 +53,7 @@ class Post extends React.Component {
   };
 
   render() {
-      debugger;
-    return typeof this.props.id === "string" ? this.displays[this.state.display]() : (
-        <div className="pa6 bg-near-white tc cb overflow-hidden gray">loading contents...</div>
-    );
+    return typeof this.props.id === "string" ? this.displays[this.state.display]() : <div className="pa6 bg-near-white tc cb overflow-hidden gray">loading contents...</div>;
   }
 }
 
@@ -58,7 +61,7 @@ function mapStoreToProps(store, own_props) {
   const path_splitted = own_props.location.pathname.split("/");
   let post_id = false;
 
-  if (path_splitted.length === 4 || path_splitted.length === 5 ) {
+  if (path_splitted.length === 4 || path_splitted.length === 5) {
     post_id = path_splitted[3];
   }
 
