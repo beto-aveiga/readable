@@ -11,12 +11,10 @@ import { get_post } from "./actions";
 import PostFields from "./displays/fields";
 import PostFull from "./displays/full";
 import PostTeaser from "./displays/teaser";
+import EditMode from "./displays/edit_mode";
 
 class Post extends React.Component {
-  state = {
-    display: "teaser"
-  };
-
+  state = { display: "teaser" };
   timeago = timeago();
 
   componentDidMount() {
@@ -27,43 +25,25 @@ class Post extends React.Component {
     if (path_splitted.length === 4) {
       post_id = path_splitted[3];
       this.props.dispatch(get_post(post_id));
-      this.setState({
-        display: "full"
-      });
+      this.setState({ display: "full" });
     }
 
     // detecting post in edit mode
     if (path_splitted.length === 5 && path_splitted[4] ==='edit') {
       post_id = path_splitted[3];
       this.props.dispatch(get_post(post_id));
-      this.setState({
-        display: "edit_mode"
-      });
+      this.setState({ display: "edit_mode" });
     }
-
-
   }
 
-  upVote = () => {
-    this.props.dispatch(post_upVote(this.props.id));
-  };
-
-  downVote = () => {
-    this.props.dispatch(post_downVote(this.props.id));
-  };
+  upVote = () => this.props.dispatch(post_upVote(this.props.id));
+  downVote = () => this.props.dispatch(post_downVote(this.props.id));
 
   displays = {
     fields: PostFields.bind(this)(),
-
-
     full: PostFull.bind(this),
-
     teaser: PostTeaser.bind(this),
-
-    edit_mode: () => (
-        <div>MODO EDICIÓN DE POST</div>
-    )
-
+    edit_mode: EditMode.bind(this)
   };
 
   render() {
@@ -75,7 +55,6 @@ class Post extends React.Component {
 }
 
 function mapStoreToProps(store, own_props) {
-  // this.props.location.pathname
   const path_splitted = own_props.location.pathname.split("/");
   let post_id = false;
 
@@ -93,4 +72,3 @@ function mapStoreToProps(store, own_props) {
 }
 
 export default withRouter(connect(mapStoreToProps)(Post));
-// export default connect(mapStoreToProps)(Post);
