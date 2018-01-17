@@ -34,8 +34,14 @@ server.createPost = ({ title = req(), body = req(), author = req(), category = r
   const id = uuid();
   const timestamp = Date.now();
   const params = { headers, id, timestamp, title, body, author, category };
-  return fetch(url + "posts", params);
-};
+  return fetch(url + 'posts', params);
+}
+
+// Updating a post
+server.updatePost = ({ id = req(), title = req(), body = req() } = {}) => {
+    const params = { title, body }
+    return fetch(url + 'posts/' + id, params);
+}
 
 // Upvote | Downvote
 server.vote = (entity, id, option) => fetch(`${url}${entity}s/${id}`, post({ option })).then(response => response.json());
