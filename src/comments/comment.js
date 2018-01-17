@@ -2,10 +2,12 @@ import { connect } from "react-redux";
 import React from "react";
 import Rate from "../rate/rate";
 import { COMMENT_UPVOTE_ACTION, COMMENT_DOWNVOTE_ACTION } from "./actions";
-import { comment_upVote, comment_downVote } from "./actions";
+import { comment_upVote, comment_downVote, comment_delete } from "./actions";
 import _ from "lodash";
 import { Link, Route, withRouter } from "react-router-dom";
 import CommentBox from "./commentBox";
+
+
 
 class Comment extends React.Component {
   state = {
@@ -31,6 +33,10 @@ class Comment extends React.Component {
     });
   };
 
+  deleteComment = () => {
+      this.props.dispatch( comment_delete(this.props.id) );
+  }
+
   render() {
     return (
       <div className="sans-serif pa0 tl shadow-4 mb4">
@@ -49,7 +55,7 @@ class Comment extends React.Component {
                               <span to={`/comments/${this.props.id}/edit`} onClick={this.editModeToggle} className="no-underline pointer">
                                   <i className="material-icons v-mid mr1 f5 blue">mode_edit</i> <span className="ttu f6 black">Edit</span>
                               </span>
-                              <span to={`/comments/${this.props.id}/delete`} className="no-underline pointer">
+                              <span to={`/comments/${this.props.id}/delete`} className="no-underline pointer" onClick={ this.deleteComment } >
                                   <i className="material-icons v-mid mr1 ml3 f5 red">delete</i> <span className="ttu f6 black">Delete</span>
                               </span>
                           </div>

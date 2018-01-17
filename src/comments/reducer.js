@@ -1,4 +1,4 @@
-import { COMMENTS_IN_POST_ACTION, COMMENT_UPVOTE_ACTION, COMMENT_DOWNVOTE_ACTION } from "./actions";
+import { COMMENTS_IN_POST_ACTION, COMMENT_UPVOTE_ACTION, COMMENT_DOWNVOTE_ACTION, COMMENT_DELETE } from "./actions";
 import _ from "lodash";
 
 function reducer(state = { comments: [] }, action) {
@@ -7,6 +7,12 @@ function reducer(state = { comments: [] }, action) {
       const { comments } = action;
       let uniqueComments = _.unionBy(comments, state.comments, "id");
       return _.assign({}, state, { comments: uniqueComments });
+    }
+
+    case COMMENT_DELETE: {
+        let { comment } = action;
+        const state_without_comment = _.filter(state.comments, state_comment => comment.id != state_comment.id );
+        return _.assign({}, state, { 'comments' : state_without_comment });
     }
 
     case COMMENT_DOWNVOTE_ACTION:

@@ -12,9 +12,9 @@ export const comment_create_action = comment => ({
   comment
 });
 
-export const comment_delete_action = id => ({
+export const comment_delete_action = comment => ({
   type: COMMENT_DELETE,
-  id
+  comment
 });
 
 export const comment_edit_action = comment => ({
@@ -43,6 +43,10 @@ export const comment_upVote = id => dispatch => {
 
 export const comment_downVote = id => dispatch => {
   server.downVoteComment(id).then(data => dispatch(comment_downVote_action(data)));
+};
+
+export const comment_delete = id => dispatch => {
+  server.delComment(id).then(data => dispatch(comment_delete_action(data)));
 };
 
 export const get_comments = id => dispatch => {
